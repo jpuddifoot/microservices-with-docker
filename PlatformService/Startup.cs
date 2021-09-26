@@ -59,6 +59,8 @@ namespace PlatformService
 
             app.UseAuthorization();
 
+            app.PrepPopulation();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
