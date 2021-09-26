@@ -1,4 +1,4 @@
-using System.ComponentMode.DataAnnotations
+using System.ComponentModel.DataAnnotations;
 
 namespace PlatformService.Models
 {
