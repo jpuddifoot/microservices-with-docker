@@ -33,6 +33,9 @@ namespace PlatformService
                     opt.UseInMemoryDatabase("InMemDb");
                 }
             );
+
+            services.AddTransient<IPlatformRepo, PlatformRepo>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
