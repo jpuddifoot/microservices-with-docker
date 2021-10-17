@@ -38,14 +38,16 @@ namespace PlatformService.Controllers{
 		public ActionResult<PlatformReadDto> Create(PlatformCreateDto viewModel){
 			var platform = mapper.Map<PlatformModel>(viewModel);
 			repo.CreatePlatform(platform);
+			repo.SaveChanges();
 			//var viewModel = mapper.Map<PlatformReadDto>(data);
-			return Ok(mapper.Map<PlatformReadDto>(viewModel));
+			return Ok(mapper.Map<PlatformReadDto>(platform));
 		}
 
 		[HttpPut("{id}/")]
 		public ActionResult<PlatformReadDto> Update(PlatformCreateDto viewModel){
 			var platform = mapper.Map<PlatformModel>(viewModel);
 			repo.CreatePlatform(platform);
+			repo.SaveChanges();
 			//var viewModel = mapper.Map<PlatformReadDto>(data);
 			return Ok(mapper.Map<PlatformReadDto>(viewModel));
 		}
