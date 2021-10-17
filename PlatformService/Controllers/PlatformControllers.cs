@@ -27,7 +27,7 @@ namespace PlatformService.Controllers{
 			return Ok(viewModel);
 		}
 
-		[HttpGet("{id}/")]
+		[HttpGet("{id}/", Name = nameof(GetOneById))]
 		public ActionResult<PlatformReadDto> GetOneById(int id){
 			var data = repo.GetPlatformById(id);
 			var viewModel = mapper.Map<PlatformReadDto>(data);
@@ -39,8 +39,8 @@ namespace PlatformService.Controllers{
 			var platform = mapper.Map<PlatformModel>(viewModel);
 			repo.CreatePlatform(platform);
 			repo.SaveChanges();
-			//var viewModel = mapper.Map<PlatformReadDto>(data);
-			return Ok(mapper.Map<PlatformReadDto>(platform));
+			var result = mapper.Map<PlatformReadDto>(platform);
+			return CreatedAtRoute(nameof(GetOneById), new { id = result.Id }, result);
 		}
 
 		[HttpPut("{id}/")]
@@ -48,7 +48,6 @@ namespace PlatformService.Controllers{
 			var platform = mapper.Map<PlatformModel>(viewModel);
 			repo.CreatePlatform(platform);
 			repo.SaveChanges();
-			//var viewModel = mapper.Map<PlatformReadDto>(data);
 			return Ok(mapper.Map<PlatformReadDto>(viewModel));
 		}
 	}
